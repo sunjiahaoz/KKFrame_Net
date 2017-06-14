@@ -18,6 +18,7 @@ namespace KK.Frame.Net
         public const int HEAD_LEN = 8;
     }
 
+    [System.Serializable]
     public struct CMD_Command
     {
         public CMD_Command(short cmdMainId, short cmdSubId)
@@ -37,8 +38,9 @@ namespace KK.Frame.Net
     }
 
     // 接收消息基本类
-    public class CMD_Base_RespNtf
+    public abstract class CMD_Base_RespNtf
     {
+        public abstract void Process();
     }
     // 发送的消息基本类
     public abstract class CMD_Base_Req

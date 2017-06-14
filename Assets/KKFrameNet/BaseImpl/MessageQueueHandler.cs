@@ -16,9 +16,9 @@ namespace KK.Frame.Net
 {  
     public class MessageQueueHandler : MonoBehaviour
     {
-        static Queue<QueueItem> messageQueue;
-        static Queue<QueueItem> errorQueue;
-        public static System.Action<QueueItem> _actionDoCallBack = null;
+        Queue<QueueItem> messageQueue;
+        Queue<QueueItem> errorQueue;
+        public System.Action<QueueItem> _actionDoCallBack = null;
         
         void Awake()
         {
@@ -47,7 +47,7 @@ namespace KK.Frame.Net
             }
         }
 
-        public static void PushQueue(short wMainCmdId, short wSubCmdId, CMD_Base_RespNtf msgBase)
+        public void PushQueue(short wMainCmdId, short wSubCmdId, CMD_Base_RespNtf msgBase)
         {
             lock (messageQueue)
             {
@@ -60,7 +60,7 @@ namespace KK.Frame.Net
         /// </summary>
         /// <param name="msg">Message.</param>
         /// <param name="state">State.</param>
-        public static void PushError(string msg, short state = 0)
+        public void PushError(string msg, short state = 0)
         {
             lock (errorQueue)
             {
@@ -72,7 +72,7 @@ namespace KK.Frame.Net
         /// 回调方法执行
         /// </summary>
         /// <param name="param">Parameter.</param>
-        private static void DoCallback(QueueItem item)
+        private void DoCallback(QueueItem item)
         {
             if (_actionDoCallBack != null)
             {

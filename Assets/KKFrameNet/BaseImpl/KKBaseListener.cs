@@ -6,6 +6,12 @@ namespace KK.Frame.Net
 {
     public class KKBaseListener : SocketListner
     {
+        MsgDispatcher _dispatcher = null;
+        public KKBaseListener(MsgDispatcher dispatcher)
+        {
+            _dispatcher = dispatcher;
+        }
+
         override public void OnMessage(USocket us, ByteBuffer bb) 
         {
             try
@@ -16,7 +22,7 @@ namespace KK.Frame.Net
                 short nMainId = bb.ReadShort();
                 short nSubId = bb.ReadShort();
                 Debug.Log("<color=blue>" + string.Format("Message:{0},{1},{2},{3},{4}", nDataSize, nCheckCode, nMsgVer, nMainId, nSubId) + "</color>");
-                MsgDispatcher.Instance.Dispatcher(nMainId, nSubId, bb);                
+                _dispatcher.Dispatcher(nMainId, nSubId, bb);                
             }
             catch (System.Exception ex)
             {                
