@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace KK.Util
+namespace KK.Frame.Net
 {
     public class ClassUtil
     {
+        // 获取指定命名空间中的类
        public static List<Type> GetClasses(string nameSpace)
         {
             Assembly asm = Assembly.GetExecutingAssembly();
