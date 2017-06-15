@@ -24,6 +24,10 @@ public class Demo : MonoBehaviour {
 
             LobbyNetManager.Instance.SendMessage(LobbyNetManager.PORT_LOGIN, req);
         }
+        if (GUILayout.Button("To2", GUILayout.Width(100), GUILayout.Height(100)))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("2");
+        }
     }
 	
 }

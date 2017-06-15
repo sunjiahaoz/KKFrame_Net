@@ -1339,6 +1339,35 @@ namespace KK.Frame.Util
         }
 
         /// <summary>
+        /// 合并两个此点
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="dictDest">合并后的目标词典</param>
+        /// <param name="dictSrc">要合并的此点</param>
+        /// <param name="bOverrideKeySame">如果目标词典中已经存在KEY，是否覆盖掉，否则就过掉</param>
+        public static void CombineDict<TKey, TValue>(Dictionary<TKey, TValue> dictDest, Dictionary<TKey, TValue> dictSrc, bool bOverrideKeySame = true)
+        {
+            foreach(var item in dictSrc)
+            {
+                if (dictDest.ContainsKey(item.Key))
+                {
+                    if (bOverrideKeySame)
+                    {
+                        dictDest[item.Key] = item.Value;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                else
+                {
+                    dictDest.Add(item.Key, item.Value);
+                }
+            }
+        }
+        /// <summary>
         /// 调试测试输出一个list，使用元素的ToString
         /// </summary>
         /// <typeparam name="T">元素类型</typeparam>

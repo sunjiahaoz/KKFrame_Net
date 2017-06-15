@@ -3,24 +3,25 @@ using System.Collections;
 using KK.Frame.Net;
 using KK.Frame.Util;
 
-[RequireComponent(typeof(MsgDispatcher))]
+[RequireComponent(typeof(MessageQueueHandler))]
 public class LobbyNetManager : SingletonMonoBehaviour<LobbyNetManager>, INetManager
 {
-    MsgDispatcher _dispatcher;
-    public MsgDispatcher Dispatcher
+
+    MessageQueueHandler _queue = null;
+    MessageQueueHandler msgQueue
     {
         get
         {
-            if (_dispatcher == null)
+            if (_queue == null)
             {
-                _dispatcher = GetComponent<MsgDispatcher>();
+                _queue = GetComponent<MessageQueueHandler>();
             }
-            return _dispatcher;
+            return _queue;
         }
     }
     ShortSocketPool _socketPool = null;
     SocketListner _listener = null;
-    Protocal _protocal = null;
+    Protocal _protocal = null;    
 
     string _strIP = "118.190.62.68";
     public const int PORT_LOGIN = 9000;
@@ -30,9 +31,9 @@ public class LobbyNetManager : SingletonMonoBehaviour<LobbyNetManager>, INetMana
     #region _INetManager_
     public void CreateInit(string strIP, int nIP, System.Object objExtend = null)
     {
-        _strIP = strIP;
+        _strIP = strIP;        
         _socketPool = new ShortSocketPool();
-        _listener = new KKBaseListener(Dispatcher);
+        _listener = new KKBaseListener(msgQueue, MsgFactory.Lobby);
         _protocal = new KKBaseProtocal();
     }
 

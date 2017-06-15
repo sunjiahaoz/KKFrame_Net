@@ -17,8 +17,7 @@ namespace KK.Frame.Net
     public class MessageQueueHandler : MonoBehaviour
     {
         Queue<QueueItem> messageQueue;
-        Queue<QueueItem> errorQueue;
-        public System.Action<QueueItem> _actionDoCallBack = null;
+        Queue<QueueItem> errorQueue;        
         
         void Awake()
         {
@@ -74,10 +73,7 @@ namespace KK.Frame.Net
         /// <param name="param">Parameter.</param>
         private void DoCallback(QueueItem item)
         {
-            if (_actionDoCallBack != null)
-            {
-                _actionDoCallBack(item);
-            }            
+            item._msgBase.Process(); 
         }
     }
 

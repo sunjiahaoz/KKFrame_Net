@@ -6,10 +6,12 @@ namespace KK.Frame.Net
 {
     public class KKBaseListener : SocketListner
     {
-        MsgDispatcher _dispatcher = null;
-        public KKBaseListener(MsgDispatcher dispatcher)
+        MessageQueueHandler _queue = null;
+        IMsgFactory _factory = null;
+        public KKBaseListener(MessageQueueHandler queue, IMsgFactory factory)
         {
-            _dispatcher = dispatcher;
+            _queue = queue;
+            _factory = factory;
         }
 
         override public void OnMessage(USocket us, ByteBuffer bb) 
@@ -22,10 +24,17 @@ namespace KK.Frame.Net
                 short nMainId = bb.ReadShort();
                 short nSubId = bb.ReadShort();
                 Debug.Log("<color=blue>" + string.Format("Message:{0},{1},{2},{3},{4}", nDataSize, nCheckCode, nMsgVer, nMainId, nSubId) + "</color>");
-                _dispatcher.Dispatcher(nMainId, nSubId, bb);                
+
+                CMD_Base_RespNtf msg = _factory.CreateRespNtfMsg(new CMD_Command(nMainId, nSubId));
+                if (msg != null)
+                {
+                    msg.Deserialize(bb);
+                    _queue.PushQueue(nMainId, nSubId, msg);
+                }
+                
             }
             catch (System.Exception ex)
-            {                
+            {
                 Debug.LogError("<color=red>[Error]</color>---" + "KKBaseListener.OnMessage Error:" + ex.Message);            	
             }
         }
