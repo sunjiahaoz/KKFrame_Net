@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KKFrameNet", "KKFrameNet\KKFrameNet.csproj", "{3ECD883A-9D01-4A70-92A3-53898D9D9042}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KKFrameNetEditor", "KKFrameNetEditor\KKFrameNetEditor.csproj", "{7C6F28F3-4330-4C1F-8CF5-29AED1D7BFA0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3ECD883A-9D01-4A70-92A3-53898D9D9042} = {3ECD883A-9D01-4A70-92A3-53898D9D9042}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3ECD883A-9D01-4A70-92A3-53898D9D9042}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ECD883A-9D01-4A70-92A3-53898D9D9042}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ECD883A-9D01-4A70-92A3-53898D9D9042}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ECD883A-9D01-4A70-92A3-53898D9D9042}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C6F28F3-4330-4C1F-8CF5-29AED1D7BFA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C6F28F3-4330-4C1F-8CF5-29AED1D7BFA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C6F28F3-4330-4C1F-8CF5-29AED1D7BFA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C6F28F3-4330-4C1F-8CF5-29AED1D7BFA0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
