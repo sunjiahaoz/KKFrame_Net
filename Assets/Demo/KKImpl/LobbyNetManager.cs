@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using KK.Frame.Net;
-using KK.Frame.Util;
 
 [RequireComponent(typeof(MessageQueueHandler))]
 public class LobbyNetManager : SingletonMonoBehaviour<LobbyNetManager>, INetManager

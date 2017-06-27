@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KKFrameNetEditor</name>
+    </assembly>
+    <members>
+        <member name="T:NetField">
+            <summary>
+            消息创建编辑器
+            用于创建保存网络消息的cs文件
+            Author:StraussDu
+            </summary>
+        </member>
+    </members>
+</doc>

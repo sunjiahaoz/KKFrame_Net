@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KKFrameNet</name>
+    </assembly>
+    <members>
+        <member name="M:KK.Frame.Net.MessageQueueHandler.PushError(System.String,System.Int16)">
+            <summary>
+            推送错误消息
+            </summary>
+            <param name="msg">Message.</param>
+            <param name="state">State.</param>
+        </member>
+        <member name="M:KK.Frame.Net.MessageQueueHandler.DoCallback(KK.Frame.Net.QueueItem)">
+            <summary>
+            回调方法执行
+            </summary>
+            <param name="param">Parameter.</param>
+        </member>
+        <member name="P:KK.Frame.Net.IMsgFactory.groupId">
+            <summary>
+            相同GroupID的Factory才可以混合
+            </summary>
+        </member>
+        <member name="M:KK.Frame.Net.IMsgFactory.CreateRespNtfMsg(KK.Frame.Net.CMD_Command)">
+            <summary>
+            获得一个RespNtf消息
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KK.Frame.Net.IMsgFactory.Combine(KK.Frame.Net.IMsgFactory)">
+            <summary>
+            合并，如果有相同CMD_command的，则会覆盖掉
+            </summary>
+            <param name="factory"></param>
+        </member>
+        <member name="M:KK.Frame.Net.IMsgFactory.UnCombine(KK.Frame.Net.IMsgFactory)">
+            <summary>
+            取消合并，之前如果合并时覆盖掉的不会还原
+            </summary>
+            <param name="factory"></param>
+        </member>
+        <member name="M:KK.Frame.Net.MsgFactoryMonoBase.Init(KK.Frame.Net.IMsgFactory)">
+            <summary>
+            初始化，请在建立连接之前进行调用以注册网络消息结构
+            </summary>
+        </member>
+        <member name="M:KK.Frame.Net.MsgFactoryMonoBase.UnInit(KK.Frame.Net.IMsgFactory)">
+            <summary>
+            反初始化
+            建议在连接断开之后进行调用
+            </summary>
+        </member>
+        <member name="M:KK.Frame.Net.USocket.#ctor">
+            构造（但不完善，需要设置监听器和协议解析器）
+        </member>
+        <member name="M:KK.Frame.Net.USocket.#ctor(KK.Frame.Net.SocketListner,KK.Frame.Net.Protocal)">
+            构造
+        </member>
+        <member name="M:KK.Frame.Net.USocket.setLister(KK.Frame.Net.SocketListner)">
+            装入一个监听器
+        </member>
+        <member name="M:KK.Frame.Net.USocket.setProtocal(KK.Frame.Net.Protocal)">
+            装入一个协议解析器
+        </member>
+        <member name="M:KK.Frame.Net.USocket.getProtocal">
+            协议
+        </member>
+        <member name="M:KK.Frame.Net.USocket.Connect(System.String,System.Int32,System.Action{System.Boolean})">
+            连接指定地址
+        </member>
+        <member name="M:KK.Frame.Net.USocket.Close(System.Boolean)">
+            关闭连接
+        </member>
+        <member name="M:KK.Frame.Net.USocket.connected(System.IAsyncResult)">
+            连接成功
+        </member>
+        <member name="M:KK.Frame.Net.USocket.Send(KK.Frame.Net.ByteBuffer)">
+            发送
+        </member>
+        <member name="M:KK.Frame.Net.USocket.sended(System.IAsyncResult)">
+            发送成功的回调
+        </member>
+        <member name="M:KK.Frame.Net.USocket.receive">
+            接收数据
+        </member>
+        <member name="M:KK.Frame.Net.USocket.onRecieved(System.IAsyncResult)">
+            异步收取信息
+        </member>
+        <member name="T:KK.Frame.Net.NetDefine">
+            <summary>
+            网络相关定义
+            </summary>
+        </member>
+        <member name="F:KK.Frame.Net.NetDefine.m_CheckCode">
+            <summary>
+            校验字段
+            </summary>
+        </member>
+        <member name="F:KK.Frame.Net.NetDefine.m_CheckVer">
+            <summary>
+            版本标识
+            </summary>
+        </member>
+        <member name="F:KK.Frame.Net.NetDefine.HEAD_LEN">
+            <summary>
+            消息头大小
+            </summary>
+        </member>
+        <member name="T:KK.Frame.Net.CMD_Command">
+            <summary>
+            消息ID
+            包括主ID与子ID两部分    
+            </summary>
+        </member>
+        <member name="F:KK.Frame.Net.CMD_Command.none">
+            <summary>
+            默认为空的一个ID
+            其中主，子ID均为-1
+            </summary>
+        </member>
+        <member name="F:KK.Frame.Net.CMD_Command.wMainCmdID">
+            <summary>
+            主命令码
+            </summary>
+        </member>
+        <member name="F:KK.Frame.Net.CMD_Command.wSubCmdID">
+            <summary>
+            子命令码
+            </summary>
+        </member>
+        <member name="T:KK.Frame.Net.CMD_Base_RespNtf">
+            <summary>
+            接收消息基本类
+            </summary>
+        </member>
+        <member name="M:KK.Frame.Net.CMD_Base_RespNtf.Process">
+            <summary>
+            消息处理
+            </summary>
+        </member>
+        <member name="M:KK.Frame.Net.CMD_Base_RespNtf.Deserialize(KK.Frame.Net.ByteBuffer,System.Int32)">
+            <summary>
+            消息反序列化
+            </summary>
+            <param name="buf"></param>
+            <param name="nDataSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KK.Frame.Net.CMD_Base_RespNtf.Deserialize(KK.Frame.Net.ByteBuffer)">
+            <summary>
+            消息反序列化
+            </summary>
+            <param name="buf">参与序列化的buff</param>
+            <returns></returns>
+        </member>
+        <member name="T:KK.Frame.Net.CMD_Base_Req">
+            <summary>
+            发送的消息基本类
+            </summary>
+        </member>
+        <member name="M:KK.Frame.Net.CMD_Base_Req.WriteData(KK.Frame.Net.ByteBuffer)">
+            <summary>
+            将实际消息结构数据写入buffer中
+            </summary>
+            <param name="buffer"></param>
+        </member>
+        <member name="M:KK.Frame.Net.CMD_Base_Req.GetDataSize">
+            <summary>
+            计算并返回消息结构的长度        
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KK.Frame.Net.CMD_Base_Req.Serialize">
+            <summary>
+            序列化消息，返回一个可以发送出去的buffer
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:KK.Frame.Net.ToolsNet">
+            <summary>
+            工具，内部使用的
+            </summary>
+        </member>
+        <member name="M:KK.Frame.Net.ToolsNet.CombineDict``2(System.Collections.Generic.Dictionary{``0,``1},System.Collections.Generic.Dictionary{``0,``1},System.Boolean)">
+            <summary>
+            合并两个此点
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <param name="dictDest">合并后的目标词典</param>
+            <param name="dictSrc">要合并的此点</param>
+            <param name="bOverrideKeySame">如果目标词典中已经存在KEY，是否覆盖掉，否则就过掉</param>
+        </member>
+    </members>
+</doc>

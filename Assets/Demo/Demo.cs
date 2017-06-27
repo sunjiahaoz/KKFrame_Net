@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using KK.Frame.Net;
-using KK.Frame.Util;
 using KK.MsgDef;
 
 public class Demo : MonoBehaviour {
