@@ -59,7 +59,7 @@ namespace KK.Frame.Net
         /// <summary>
         /// 子命令码
         /// </summary>
-        public short wSubCmdID;
+        public short wSubCmdID;        
     }
 
     /// <summary>
@@ -71,6 +71,18 @@ namespace KK.Frame.Net
         /// 消息处理
         /// </summary>
         public abstract void Process();
+
+        /// <summary>
+        /// 消息反序列化
+        /// </summary>
+        /// <param name="buf"></param>
+        /// <param name="nDataSize"></param>
+        /// <returns></returns>
+        public virtual CMD_Base_RespNtf Deserialize(ByteBuffer buf, int nDataSize)
+        {
+            return Deserialize(buf);
+        }
+
         /// <summary>
         /// 消息反序列化
         /// </summary>

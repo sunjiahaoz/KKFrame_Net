@@ -6,8 +6,8 @@ namespace KK.Frame.Net
 {
     public class KKBaseListener : SocketListner
     {
-        MessageQueueHandler _queue = null;
-        IMsgFactory _factory = null;
+        protected MessageQueueHandler _queue = null;
+        protected IMsgFactory _factory = null;
         public KKBaseListener(MessageQueueHandler queue, IMsgFactory factory)
         {
             _queue = queue;
@@ -28,7 +28,7 @@ namespace KK.Frame.Net
                 CMD_Base_RespNtf msg = _factory.CreateRespNtfMsg(new CMD_Command(nMainId, nSubId));
                 if (msg != null)
                 {
-                    msg.Deserialize(bb);
+                    msg.Deserialize(bb, nDataSize);
                     _queue.PushQueue(nMainId, nSubId, msg);
                 }
                 
